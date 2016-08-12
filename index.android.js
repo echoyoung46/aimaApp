@@ -5,55 +5,47 @@
  */
 
 import React from 'react';
-import Swiper from 'react-native-swiper';
+import SideMenu from 'react-native-side-menu';
+
+var Menu = require('./common/menu');
+var Page = require('./common/page');
 
 import {
   AppRegistry,
+  Component,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
-// var Search = require('./common/search');
-
-// class aimaApp extends Component {
-//   render() {
-//     return (
-//       <Search></Search>
-//     )
-//   }
-// }
-
-
+var textIndex = 0,
+    textData = [
+      'This is Page1.',
+      'This is Page2.',
+      'This is Page3.'
+    ];
 
 var aimaApp = React.createClass({
   render: function() {
+    var menu = <Menu show={textIndex} />
+    
     return (
-      <View>
-        <Swiper style={styles.wrapper} showsButtons={true}>
-          <View style={[styles.slide, styles.slide1]}>
-            <Text style={styles.text}>第一张</Text>
-          </View>
-          <View style={[styles.slide, styles.slide2]}>
-            <Text style={styles.text}>第二张</Text>
-          </View>
-          <View style={[styles.slide, styles.slide3]}>
-            <Text style={styles.text}>第三张</Text>
-          </View>
-        </Swiper>
-      </View>
+      <SideMenu menu={menu}>
+        <Page data={textData[textIndex]}></Page>
+      </SideMenu>
     )
   }
 });
 
 var styles = StyleSheet.create({
-  wrapper: {
+  container: {
 
   },
   slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#9dd6eb'
   },
   slide1: {
     backgroundColor: '#9dd6eb'
@@ -66,7 +58,7 @@ var styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold'
   }
 });

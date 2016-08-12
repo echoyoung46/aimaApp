@@ -6,38 +6,50 @@ import {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 
-var menu = React.createClass({
-    render: function() {
-        return(
-          <View style={styles.menuContainer}>
-            <View style={styles.item}>
-              <Text style={styles.text}>
-                list1
-              </Text>
-            </View>
-            
-            <View style={styles.item}>
-              <Text style={styles.text}>
-                list2
-              </Text>
-            </View>
-
-            <View style={styles.item}>
-              <Text style={styles.text}>
-                list3
-              </Text>
-            </View>
-          </View>
-        )
+var Menu = React.createClass({
+  getInitialState: function() {
+    var show = this.props.show;
+    return {
+      show: show
     }
+  },
+  choose: function(i) {
+    this.setState({
+      show: i
+    });
+  },
+  render: function() {
+    return(
+      <View style={styles.menuContainer}>
+        <TouchableOpacity onPress={this.choose.bind(this, 0)} style={styles.item}>
+          <Text style={styles.text}>
+            list1
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity onPress={this.choose.bind(this, 1)} style={styles.item}>
+          <Text style={styles.text}>
+            list2
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.choose.bind(this, 2)} style={styles.item}>
+          <Text style={styles.text}>
+            list3
+          </Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
 });
 
 var styles = StyleSheet.create({
     menuContainer: {
-        flexDirection: 'row'
+        flexDirection: 'column'
     },
     item: {
         flex: 1,
@@ -52,4 +64,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = menu;
+module.exports = Menu;
