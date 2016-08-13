@@ -47,3 +47,5 @@ android/keystores/debug.keystore
 .buckconfig
 .flowconfig
 .watchmanconfig
+tsconfig.json
+.vscode/
